@@ -4,10 +4,50 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <title>Document</title>
   </head>
   <body>
+    <header class="header">
+      <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+          <form class="d-flex nav-form" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <!-- <button class="btn btn-outline-success" type="submit">
+              Search
+            </button> -->
+          </form>
+        </div>
+      </nav>
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle dropdown-btn"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Select an Episod
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark episod-dropdown">
+          <li class="dropdown-item list-of-episod special-li">All Episods</li>
+        </ul>
+      </div>
+    </header>
+    <main>
+      <section class="parent-card"></section>
+    </main>
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

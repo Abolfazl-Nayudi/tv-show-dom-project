@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  margin-bottom: 2rem;
+  background: #333 !important;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar {
+  background-color: inherit !important;
+  width: 50%;
+}
+
+.nav-form {
+  width: 100%;
+}
+
+.nav-form input {
+  width: 100%;
+  height: 3rem;
+}
+
+.nav-form button {
+  width: 6rem;
+}
+
+/* style the main */
+.parent-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.summary {
+  height: 150px !important;
+  overflow: scroll !important;
+}
+
+.summary::-webkit-scrollbar {
+  display: none;
+}
+
+.episod-parent {
+  background-color: #333;
+  color: white;
+}
+
+.episod {
+  margin: 0;
+  font-size: 20px;
+}
+
+.episod-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+}
+
+.episod-name h5 {
+  margin: none;
+  color: white;
+}
+
+.episod-dropdown {
+  height: 300px;
+  width: 300px;
+  overflow: scroll;
+}
+
+.episod-dropdown::-webkit-scrollbar {
+  display: none;
+}
+
+.dropdown-btn {
+  width: 300px;
+}
+
+.list-of-episod {
+  padding: 0.4rem 0;
+  margin: 1px;
+  border: 0.5px solid black;
+  text-align: center;
+}
+
+/* media query */
+@media (max-width: 830px) {
+  .navbar {
+    width: 100%;
+  }
+}
