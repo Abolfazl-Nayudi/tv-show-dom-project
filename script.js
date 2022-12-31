@@ -3,9 +3,9 @@ const navForm = document.querySelector(".nav-form");
 const searchInput = document.querySelector(".nav-form input");
 const dropdown = document.querySelector(".episod-dropdown");
 const specialLiDropDown = document.querySelector(".special-li");
-console.log(specialLiDropDown);
-
-// render the data
+const showResult = document.querySelector(".show-result p");
+console.log(showResult);
+//COMMENT: render the data
 const getData = async () => {
   const request = await axios.get("https://api.tvmaze.com/shows/82/episodes");
 
@@ -36,20 +36,18 @@ const getData = async () => {
 
 getData();
 
-// make the search bar
-
+//COMMENT: make the search bar
 function searchFunc(term) {
   searchInput.addEventListener("keyup", (e) => {
     parentCard.innerHTML = "";
-    term
-      .filter((ele) => {
-        return (
-          ele.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          ele.summary.toLowerCase().includes(e.target.value.toLowerCase())
-        );
-      })
-      .forEach((item) => {
-        const render = `<div class="card" style="width: 19rem">
+    const result = term.filter((ele) => {
+      return (
+        ele.name.toLowerCase().includes(e.target.value.trim().toLowerCase()) ||
+        ele.summary.toLowerCase().includes(e.target.value.trim().toLowerCase())
+      );
+    });
+    result.forEach((item) => {
+      const render = `<div class="card" style="width: 19rem">
           <img src="${item.image.medium}" class="card-img-top" alt="..." />
           <div class="episod-name">
           <h5 >${item.name}</h2>
@@ -60,17 +58,26 @@ function searchFunc(term) {
           <div class="episod-parent card-header text-center">
           <p class="episod">
           ${item.season < 10 ? "S0" + item.season : "S" + item.season}${
-          item.number < 10 ? "E0" + item.number : "E" + item.number
-        }
+        item.number < 10 ? "E0" + item.number : "E" + item.number
+      }
           </p>
           </div>
         </div>`;
-        parentCard.innerHTML += render;
-      });
+      parentCard.innerHTML += render;
+    });
+    // COMMENT: show the result of search in .show-result section
+    if (result.length > 0) {
+      showResult.innerHTML = `<span class="success">${result.length} </span> result for <span class="success">${e.target.value}</span> search`;
+    } else {
+      showResult.innerHTML = `<span class="failed">${e.target.value}</span> has no result`;
+    }
+    if (e.target.value === "") {
+      showResult.textContent = "";
+    }
   });
 }
 
-// make the dropdown
+//COMMENT: make the dropdown
 function episodDropdown(data) {
   const arrOfLiEl = [];
   const arrOfNameEpisod = [];
@@ -78,7 +85,7 @@ function episodDropdown(data) {
     arrOfNameEpisod.push(ele.name);
   });
 
-  // this for loop create the list of episods in dropdown
+  //COMMENT: this for loop create the list of episods in dropdown
   data.forEach((item) => {
     const liEl = document.createElement("li");
     liEl.classList += "dropdown-item list-of-episod";
@@ -89,7 +96,7 @@ function episodDropdown(data) {
     dropdown.append(liEl);
   });
 
-  // this loop make the list of episods in dropdown interactive and when we click on each item the website will show us just that card that has the same episod's name
+  //COMMENT: this loop make the list of episods in dropdown interactive and when we click on each item the website will show us just that card that has the same episod's name
   data.forEach((item, index) => {
     arrOfLiEl[index].addEventListener("click", (e) => {
       if (arrOfNameEpisod.includes(e.target.textContent.slice(8))) {
@@ -116,7 +123,7 @@ function episodDropdown(data) {
     });
   });
 
-  // this eventListener of the first item of dropdwon and when we click on that it will show all cards
+  //COMMENT: this eventListener of the first item of dropdwon and when we click on that it will show all cards
   specialLiDropDown.addEventListener("click", () => {
     console.log("helo");
     parentCard.innerHTML = "";

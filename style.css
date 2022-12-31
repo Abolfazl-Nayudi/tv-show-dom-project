@@ -32,7 +32,28 @@
   width: 6rem;
 }
 
-/* style the main */
+/*style the main */
+
+.show-result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-result p {
+  font-size: 30px;
+  font-weight: normal;
+  font-family: arial;
+}
+
+.success {
+  color: rgb(59, 216, 59);
+}
+
+.failed {
+  color: crimson;
+}
+
 .parent-card {
   display: flex;
   flex-wrap: wrap;
@@ -90,6 +111,7 @@
   margin: 1px;
   border: 0.5px solid black;
   text-align: center;
+  cursor: pointer;
 }
 
 /* media query */
