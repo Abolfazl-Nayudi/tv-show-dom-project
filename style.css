@@ -34,6 +34,15 @@
 
 /*style the main */
 
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.card {
+  height: 400.11px !important;
+}
+
 .show-result {
   display: flex;
   justify-content: center;

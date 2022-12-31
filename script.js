@@ -10,7 +10,8 @@ const getData = async () => {
   const request = await axios.get("https://api.tvmaze.com/shows/82/episodes");
 
   request.data.forEach((item) => {
-    const html = `<div class="card" style="width: 19rem">
+    const html = `<a class="link" href="${item.url}">
+    <div class="card" style="width: 19rem">
           <img src="${item.image.medium}" class="card-img-top" alt="..." />
           <div class="episod-name">
           <h5 >${item.name}</h5>
@@ -25,7 +26,8 @@ const getData = async () => {
     }
             </p>
           </div>
-        </div>`;
+        </div>
+        </a>`;
 
     parentCard.innerHTML += html;
   });
@@ -47,7 +49,8 @@ function searchFunc(term) {
       );
     });
     result.forEach((item) => {
-      const render = `<div class="card" style="width: 19rem">
+      const render = `<a class="link" href="${item.url}">
+      <div class="card" style="width: 19rem">
           <img src="${item.image.medium}" class="card-img-top" alt="..." />
           <div class="episod-name">
           <h5 >${item.name}</h2>
@@ -62,7 +65,8 @@ function searchFunc(term) {
       }
           </p>
           </div>
-        </div>`;
+        </div>
+        </a>`;
       parentCard.innerHTML += render;
     });
     // COMMENT: show the result of search in .show-result section
@@ -102,7 +106,8 @@ function episodDropdown(data) {
       if (arrOfNameEpisod.includes(e.target.textContent.slice(8))) {
         parentCard.innerHTML = "";
 
-        const card = `<div class="card" style="width: 19rem">
+        const card = `<a class="link" href="${item.url}">
+        <div class="card" style="width: 19rem">
             <img src="${item.image.medium}" class="card-img-top" alt="..." />
             <div class="episod-name">
             <h5 >${item.name}</h2>
@@ -117,7 +122,8 @@ function episodDropdown(data) {
         }
         </p>
             </div>
-          </div>`;
+          </div>
+        </a>`;
         parentCard.innerHTML += card;
       }
     });
@@ -128,7 +134,8 @@ function episodDropdown(data) {
     console.log("helo");
     parentCard.innerHTML = "";
     data.forEach((item) => {
-      const html = `<div class="card" style="width: 19rem">
+      const html = `<a class="link" href="${item.url}">
+      <div class="card" style="width: 19rem">
           <img src="${item.image.medium}" class="card-img-top" alt="..." />
           <div class="episod-name">
           <h5 >${item.name}</h5>
@@ -143,7 +150,8 @@ function episodDropdown(data) {
       }
             </p>
           </div>
-        </div>`;
+        </div>
+      </a>`;
 
       parentCard.innerHTML += html;
     });
