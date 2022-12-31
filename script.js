@@ -5,12 +5,10 @@ const dropdown = document.querySelector(".episod-dropdown");
 const specialLiDropDown = document.querySelector(".special-li");
 const showResult = document.querySelector(".show-result p");
 console.log(showResult);
-//COMMENT: render the data
-const getData = async () => {
-  const request = await axios.get("https://api.tvmaze.com/shows/82/episodes");
 
-  request.data.forEach((item) => {
-    const html = `<a class="link" href="${item.url}">
+// COMMENT: instead of makeing the card in each scope that i need, i made this function a invoked it in that place
+function makeCards(item) {
+  return `<a class="link" href="${item.url}">
     <div class="card" style="width: 19rem">
           <img src="${item.image.medium}" class="card-img-top" alt="..." />
           <div class="episod-name">
@@ -22,12 +20,20 @@ const getData = async () => {
           <div class="episod-parent card-header text-center">
             <p class="episod">
               ${item.season < 10 ? "S0" + item.season : "S" + item.season}${
-      item.number < 10 ? "E0" + item.number : "E" + item.number
-    }
+    item.number < 10 ? "E0" + item.number : "E" + item.number
+  }
             </p>
           </div>
         </div>
         </a>`;
+}
+
+//COMMENT: render the data
+const getData = async () => {
+  const request = await axios.get("https://api.tvmaze.com/shows/82/episodes");
+
+  request.data.forEach((item) => {
+    const html = makeCards(item);
 
     parentCard.innerHTML += html;
   });
@@ -49,24 +55,7 @@ function searchFunc(term) {
       );
     });
     result.forEach((item) => {
-      const render = `<a class="link" href="${item.url}">
-      <div class="card" style="width: 19rem">
-          <img src="${item.image.medium}" class="card-img-top" alt="..." />
-          <div class="episod-name">
-          <h5 >${item.name}</h2>
-          </div>
-          <div class="card-body summary">
-            ${item.summary}
-          </div>
-          <div class="episod-parent card-header text-center">
-          <p class="episod">
-          ${item.season < 10 ? "S0" + item.season : "S" + item.season}${
-        item.number < 10 ? "E0" + item.number : "E" + item.number
-      }
-          </p>
-          </div>
-        </div>
-        </a>`;
+      const render = makeCards(item);
       parentCard.innerHTML += render;
     });
     // COMMENT: show the result of search in .show-result section
@@ -106,24 +95,7 @@ function episodDropdown(data) {
       if (arrOfNameEpisod.includes(e.target.textContent.slice(8))) {
         parentCard.innerHTML = "";
 
-        const card = `<a class="link" href="${item.url}">
-        <div class="card" style="width: 19rem">
-            <img src="${item.image.medium}" class="card-img-top" alt="..." />
-            <div class="episod-name">
-            <h5 >${item.name}</h2>
-            </div>
-            <div class="card-body summary">
-              ${item.summary}
-            </div>
-            <div class="episod-parent card-header text-center">
-            <p class="episod">
-            ${item.season < 10 ? "S0" + item.season : "S" + item.season}${
-          item.number < 10 ? "E0" + item.number : "E" + item.number
-        }
-        </p>
-            </div>
-          </div>
-        </a>`;
+        const card = makeCards(item);
         parentCard.innerHTML += card;
       }
     });
@@ -134,24 +106,7 @@ function episodDropdown(data) {
     console.log("helo");
     parentCard.innerHTML = "";
     data.forEach((item) => {
-      const html = `<a class="link" href="${item.url}">
-      <div class="card" style="width: 19rem">
-          <img src="${item.image.medium}" class="card-img-top" alt="..." />
-          <div class="episod-name">
-          <h5 >${item.name}</h5>
-          </div>
-          <div class="card-body summary">
-            ${item.summary}
-          </div>
-          <div class="episod-parent card-header text-center">
-            <p class="episod">
-              ${item.season < 10 ? "S0" + item.season : "S" + item.season}${
-        item.number < 10 ? "E0" + item.number : "E" + item.number
-      }
-            </p>
-          </div>
-        </div>
-      </a>`;
+      const html = makeCards(item);
 
       parentCard.innerHTML += html;
     });
